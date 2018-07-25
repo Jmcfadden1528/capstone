@@ -33,8 +33,9 @@ public class Event {
     @NotNull(message = "Date cannot be left blank")
     private Date date;
 
+    @NotNull(message = "Time must be formatted hh:mm:ss")
     private Time time;
-    //TODO: delete event once date is past.
+
     @NotNull
     @Size(min = 1, message = "location cannot be left blank")
     private String location;
