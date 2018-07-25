@@ -1,20 +1,13 @@
 package org.launchcode.capstoneprojectjm.models;
 
 
-
 import org.hibernate.validator.constraints.Range;
-import org.launchcode.capstoneprojectjm.models.Data.UserDao;
-import org.springframework.beans.factory.annotation.Autowired;
-
-
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 
@@ -36,9 +29,10 @@ public class Event {
     @NotNull(message = "Time must be formatted hh:mm:ss")
     private Time time;
 
-    @NotNull
-    @Size(min = 1, message = "location cannot be left blank")
-    private String location;
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
 
     @NotNull
     @Size(min = 1, message = "description cannot be left blank")
@@ -59,11 +53,11 @@ public class Event {
     }
 
 
-    public Event(String name, Date date, Time time, String location, String description) {
+    public Event(String name, Date date, Time time, Address address, String description) {
         this.name = name;
         this.date = date;
         this.time = time;
-        this.location = location;
+        this.address = address;
         this.description = description;
     }
 
@@ -100,12 +94,12 @@ public class Event {
         this.time = time;
     }
 
-    public String getLocation() {
-        return location;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public String getDescription() {
