@@ -178,5 +178,16 @@ public class UserController {
         return "user/access-denied";
 
     }
+
+    @RequestMapping(value = "profile/{id}")
+    public String displayProfile(@CookieValue(value = "user", defaultValue = "none") String username, Model model, @PathVariable int id) {
+        if (username.equals("none")) {
+            return "redirect:/user/login";
+        }
+        User theUser = userDao.findOne(id);
+        model.addAttribute("theUser", theUser);
+        model.addAttribute("currentUser", userDao.findByUsername(username).get(0));
+        return "user/profile";
+    }
 }
 

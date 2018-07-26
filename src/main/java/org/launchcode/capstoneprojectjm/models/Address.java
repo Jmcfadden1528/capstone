@@ -8,9 +8,6 @@ import java.util.List;
 public class Address {
 
 
-
-
-
     @Id
     @GeneratedValue
     private int address_id = 1;
@@ -27,6 +24,13 @@ public class Address {
     @OneToMany
     @JoinColumn(name = "address_id")
     private List<Event> events = new ArrayList<>();
+
+
+
+    @OneToMany
+    @JoinColumn(name = "user_address_id")
+    private List<User> users = new ArrayList<>();
+
 
 
     public Address() {}
@@ -89,5 +93,13 @@ public class Address {
 
     public void setEvents(List<Event> events) {
         this.events = events;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

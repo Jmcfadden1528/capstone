@@ -1,5 +1,6 @@
 package org.launchcode.capstoneprojectjm.controllers;
 
+import org.launchcode.capstoneprojectjm.models.Data.AddressDao;
 import org.launchcode.capstoneprojectjm.models.Data.EventDao;
 import org.launchcode.capstoneprojectjm.models.Data.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,8 @@ public class MapController {
     @Autowired
     private EventDao eventDao; // Allows us to interact with database
 
+    @Autowired
+    AddressDao addressDao;
 
     @Autowired
     private UserDao userDao;

@@ -39,6 +39,14 @@ public class User {
     @Size(min = 1, message = "E-mail cannot be left blank")
     private String email;
 
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_address_id")
+
+    private Address address;
+
+    private String phoneNumber;
+
     private boolean Admin = false;
 
     private String profilePictureUrl;
@@ -58,6 +66,7 @@ public class User {
         this.lastname = lastname;
         this.password = password;
         this.email = email;
+
     }
 
     public String getUsername() {
@@ -142,7 +151,23 @@ public class User {
 
             this.getEvents().remove(event);
             event.getUsers().remove(this);
-        }
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
 
 

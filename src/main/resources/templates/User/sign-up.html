@@ -26,6 +26,21 @@
         <span th:errors="*{username}" class="error"></span>
         <span th:text="${usernameError}" class="error"></span>
     </div>
+    <div class="form-group">
+        <label th:for="address.streetAddress">Street Address: </label>
+        <input th:field="*{address.streetAddress}" />
+        <span th:errors="*{address.streetAddress}" class="error"></span>
+    </div>
+    <div class="form-group">
+    <label th:for="address.city">City: </label>
+    <input th:field="*{address.city}" />
+    <span th:errors="*{address.city}" class="error"></span>
+    </div>
+    <div class="form-group">
+        <label th:for="address.zipCode">Zip Code: </label>
+        <input th:field="*{address.zipCode}" />
+        <span th:errors="*{address.zipCode}" class="error"></span>
+    </div>
 
     <div class="form-group">
         <label th:for="email">E-mail: </label>

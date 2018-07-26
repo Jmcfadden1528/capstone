@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+<nav th:replace="fragments :: navigation"></nav>
+
+<h1 th:text="${theUser.firstname} + ' ' + ${theUser.lastname}"></h1>
+<img th:src="${theUser.profilePictureUrl}" height="150" width="150" alt="No Profile Picture" />
+<div class="table">
+    <table>
+        <tr>
+            <th>Address</th>
+            <th>Phone number</th>
+        </tr>
+
+        <tr>
+            <td th:text="${theUser.address.streetAddress}"></td>
+            <td th:text="${theUser.phoneNumber}"></td>
+            <td th:text="${theUser.email}"></td>
+        </tr>
+    </table>
+</div>
+
+<hr/>
+
+
+
+</body>
+</html>
+
