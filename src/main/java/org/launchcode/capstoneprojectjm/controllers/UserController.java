@@ -189,5 +189,18 @@ public class UserController {
         model.addAttribute("currentUser", userDao.findByUsername(username).get(0));
         return "user/profile";
     }
+
+    @RequestMapping(value = "neighbors")
+    public String displayAllUsers(@CookieValue(value = "user", defaultValue = "none") String username, Model model) {
+        User currentUser = userDao.findByUsername(username).get(0);
+        if (username == "none") {
+            return "redirect:/user/login";
+        }
+        Iterable<User> allUsers = userDao.findAll();
+        model.addAttribute("allUsers", allUsers);
+        model.addAttribute("currentUser", currentUser);
+        return "user/neighbors";
+
+    }
 }
 
