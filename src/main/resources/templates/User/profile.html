@@ -12,12 +12,13 @@
         <tr>
             <th>Address</th>
             <th>Phone number</th>
+            <th>E-mail</th>
         </tr>
 
         <tr>
-            <td th:text="${theUser.address.streetAddress}"></td>
-            <td th:text="${theUser.phoneNumber}"></td>
-            <td th:text="${theUser.email}"></td>
+            <td th:text="${theUser.address.streetAddress}">No Address Listed</td>
+            <td th:text="${theUser.phoneNumber}">No Phone Number</td>
+            <td th:text="${theUser.email}">No E-mail</td>
         </tr>
     </table>
 </div>

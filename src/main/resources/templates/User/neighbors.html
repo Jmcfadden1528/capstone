@@ -26,7 +26,7 @@
     <tr th:each="user : ${allUsers}">
         <td th:text="${user.firstname} + ' ' + ${user.lastname} + ' -A.K.A: ' + ${user.username}"></td>
         <td><img th:src="${user.profilePictureUrl}" height="75" width="75" alt="no pic" /></td>
-        <td><a th:href="@{'user/profile' + ${user.id}}">View Profile</a></td>
+        <td><a th:href="@{'/user/profile/' + ${user.id}}">View Profile</a></td>
 
     </tr>
 

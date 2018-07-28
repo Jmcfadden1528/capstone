@@ -8,7 +8,7 @@
 <h1 th:text="${title}">Default Title</h1>
 
 
-<div class="form">
+<div id="form1" class="form">
     <form method="post" th:object="${event}">
         <div class="form-group" width="600px">
             <label th:for="name">Title of event: </label>
@@ -58,6 +58,14 @@
         <input type="submit" value="Add Event" />
     </form>
 </div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#form1").hide(300).show(2000);
+    });
+
+</script>
 
 
 
