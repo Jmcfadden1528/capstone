@@ -10,15 +10,14 @@
 <div class="table">
     <table>
         <tr>
-            <th>Address</th>
-            <th>Phone number</th>
-            <th>E-mail</th>
+            <th th:if="${theUser.address}">Address</th>
+            <th th:if="${theUser.phoneNumber}">Phone number</th>
+            <th th:if="${theUser.email}">E-mail</th>
         </tr>
-
         <tr>
-            <td th:text="${theUser.address.streetAddress}">No Address Listed</td>
-            <td th:text="${theUser.phoneNumber}">No Phone Number</td>
-            <td th:text="${theUser.email}">No E-mail</td>
+            <td th:text="${theUser?.address?.streetAddress}"></td>
+            <td th:text="${theUser?.phoneNumber}"></td>
+            <td th:text="${theUser?.email}"></td>
         </tr>
     </table>
 </div>

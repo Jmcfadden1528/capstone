@@ -3,6 +3,7 @@ package org.launchcode.capstoneprojectjm.models;
 
 import org.hibernate.exception.DataException;
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -45,6 +46,8 @@ public class User {
 
     private Address address;
 
+
+    @NotEmpty
     private String phoneNumber;
 
     private boolean Admin = false;

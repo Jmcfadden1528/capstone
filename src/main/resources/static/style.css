@@ -1,0 +1,18 @@
+nav {
+    width: 100%;
+    border: 1px solid #555
+
+}
+
+#white {
+    background-color: white;
+    width: 100%;
+    padding: 0
+    margin: 0
+}
+
+body {
+    background-image: linear-gradient(white, red);
+
+
+}

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.oracle.jrockit.jfr.ContentType.Address;
+
 @Controller
 
 
@@ -29,6 +31,7 @@ public class UserController {
     @RequestMapping(value = "sign-up")
     public String signUpForm(Model model) {
         model.addAttribute("title", "Sign Up");
+        model.addAttribute("blank_error", "cannot be left blank");
         model.addAttribute("user", new User());
 
         return "user/sign-up";
@@ -36,10 +39,11 @@ public class UserController {
 
 
     @RequestMapping(value = "sign-up", method = RequestMethod.POST)
-    public String processSignUpForm(@ModelAttribute @Valid User newUser, Errors errors, HttpServletResponse response, String verify,
+    public String processSignUpForm(@ModelAttribute @Valid User newUser, Errors errors, @RequestParam("adminRequest") String adminRequest, HttpServletResponse response, String verify,
                                     Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("user", newUser);
+            model.addAttribute("generic_error", "field cannot be left blank");
             model.addAttribute("title", "Sign Up");
 
 //            if (!newUser.getPassword().equals(verify)) {
@@ -52,6 +56,9 @@ public class UserController {
         List<User> sameName = userDao.findByUsername(newUser.getUsername());
         if (!errors.hasErrors() && newUser.getPassword().equals(verify) && sameName.isEmpty()) {
             model.addAttribute("user", newUser);
+            if (adminRequest.equals("admin")) {
+                newUser.setAdmin(true);
+            }
             userDao.save(newUser);
 
             Cookie c = new Cookie("user", newUser.getUsername());
@@ -155,13 +162,13 @@ public class UserController {
         }
         List<User> u = userDao.findByUsername(username);
         User currentUser = u.get(0);
+        currentUser.setProfilePictureUrl(profilePictureUrl);
+        userDao.save(currentUser);
+
         model.addAttribute("currentUser", currentUser);
 
-        try {
-            currentUser.setProfilePictureUrl(profilePictureUrl);
-        }
-        catch (DataException e) {}
-        userDao.save(currentUser);
+
+
 
         return "event/my-events";
 
